@@ -26,6 +26,10 @@ const (
 	ProjectID                    = "apps/level.game"
 )
 
+type WeeklyAvg struct {
+	Week  int     `json:"week"`
+	Value float64 `json:"value"`
+}
 type CrashData struct {
 	CrashRate string `json:"crash_rate"`
 	Date      string `json:"date"`
@@ -33,21 +37,17 @@ type CrashData struct {
 
 func main() {
 
-	http.HandleFunc("/get-crashes", getAnomalies)
+	http.HandleFunc("/get-crashes", getWeeklyCrashRate)
+	http.HandleFunc("/movingavg/crashes", getWeeklyAvgComparison)
 	fmt.Println("Listening on port 8080")
+
 	http.ListenAndServe(":8080", nil)
 
 	fmt.Println("Listening on port 8080")
 
 }
-func Heelo(
-	w http.ResponseWriter,
-	r *http.Request,
-) {
 
-}
-
-func getAnomalies(
+func getWeeklyCrashRate(
 	w http.ResponseWriter,
 	r *http.Request,
 ) {
@@ -165,6 +165,131 @@ func getAnomalies(
 	}
 
 	return
+}
+
+func getWeeklyAvgComparison(
+	w http.ResponseWriter,
+	r *http.Request,
+) {
+
+	var weeklyAvg []WeeklyAvg
+
+	tokenSource, err := getTokenSource(GoogleApplicationCredentials)
+
+	if err != nil {
+		panic(err)
+	}
+	ctx := context.Background()
+	service, err := playdeveloperreporting.NewService(ctx, option.WithTokenSource(tokenSource))
+	if err != nil {
+		panic(err)
+		return
+	}
+	previousStartTime := time.Now().AddDate(0, 0, -15)
+	previousEndTime := time.Now().AddDate(0, 0, -8)
+
+	previousStartDateTime := &playdeveloperreporting.GoogleTypeDateTime{
+		Year:  int64(previousStartTime.Year()),
+		Month: int64(previousStartTime.Month()),
+		Day:   int64(previousStartTime.Day()),
+	}
+
+	previousEndDateTime := &playdeveloperreporting.GoogleTypeDateTime{
+		Year:  int64(previousEndTime.Year()),
+		Month: int64(previousEndTime.Month()),
+		Day:   int64(previousEndTime.Day()),
+	}
+
+	previousTimeSpec := &playdeveloperreporting.GooglePlayDeveloperReportingV1beta1TimelineSpec{
+		StartTime:         previousStartDateTime,
+		EndTime:           previousEndDateTime,
+		AggregationPeriod: "DAILY",
+	}
+
+	previousCrashes := service.Vitals.Crashrate.Query(
+		ProjectID+"/crashRateMetricSet", &playdeveloperreporting.GooglePlayDeveloperReportingV1beta1QueryCrashRateMetricSetRequest{
+			TimelineSpec: previousTimeSpec,
+			Metrics:      []string{"crashRate7dUserWeighted"},
+		},
+	)
+	previousResult, err := previousCrashes.Do()
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	// Process each row in the result
+	if len(previousResult.Rows) > 0 {
+		lastRow := previousResult.Rows[len(previousResult.Rows)-1]
+		fmt.Printf("Start Time: %v\n", lastRow.StartTime)
+		for _, metricValue := range lastRow.Metrics {
+			if metricValue.Metric == "crashRate7dUserWeighted" {
+				data := WeeklyAvg{
+					Week:  0,
+					Value: parseDecimal(metricValue.DecimalValue.Value) * 100,
+				}
+				weeklyAvg = append(weeklyAvg, data)
+			}
+		}
+	} else {
+		fmt.Println("No data available for the specified period.")
+	}
+
+	startTime := time.Now().AddDate(0, 0, -8)
+	endTime := time.Now().AddDate(0, 0, -1)
+
+	startDateTime := &playdeveloperreporting.GoogleTypeDateTime{
+		Year:  int64(startTime.Year()),
+		Month: int64(startTime.Month()),
+		Day:   int64(startTime.Day()),
+	}
+
+	endDateTime := &playdeveloperreporting.GoogleTypeDateTime{
+		Year:  int64(endTime.Year()),
+		Month: int64(endTime.Month()),
+		Day:   int64(endTime.Day()),
+	}
+
+	timelineSpec := &playdeveloperreporting.GooglePlayDeveloperReportingV1beta1TimelineSpec{
+		StartTime:         startDateTime,
+		EndTime:           endDateTime,
+		AggregationPeriod: "DAILY",
+	}
+
+	crashes := service.Vitals.Crashrate.Query(
+		ProjectID+"/crashRateMetricSet", &playdeveloperreporting.GooglePlayDeveloperReportingV1beta1QueryCrashRateMetricSetRequest{
+			TimelineSpec: timelineSpec,
+			Metrics:      []string{"crashRate7dUserWeighted"},
+		},
+	)
+	result, err := crashes.Do()
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	//	var crashDataList []CrashData
+
+	// Process each row in the result
+	if len(result.Rows) > 0 {
+		lastRow := result.Rows[len(result.Rows)-1]
+		fmt.Printf("Start Time: %v\n", lastRow.StartTime)
+		for _, metricValue := range lastRow.Metrics {
+			if metricValue.Metric == "crashRate7dUserWeighted" {
+				data := WeeklyAvg{
+					Week:  1,
+					Value: parseDecimal(metricValue.DecimalValue.Value) * 100,
+				}
+				weeklyAvg = append(weeklyAvg, data)
+			}
+		}
+	} else {
+		fmt.Println("No data available for the specified period.")
+	}
+	w.Header().Set("Content-Type", "application/json")
+	if err := json.NewEncoder(w).Encode(weeklyAvg); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+
 }
 
 func getTokenSource(credentialFile string) (oauth2.TokenSource, error) {

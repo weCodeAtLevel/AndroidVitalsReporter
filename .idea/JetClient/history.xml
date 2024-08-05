@@ -122,6 +122,270 @@
           </option>
           <option name="workspaceId" value="drafts" />
         </requestHistoryState>
+        <requestHistoryState>
+          <option name="dateTime" value="1722858737122" />
+          <option name="id" value="5d3b6f7e-7fb3-4874-b1e8-2e11463968f4" />
+          <option name="request">
+            <requestState>
+              <option name="id" value="51c018df-085b-46f3-aa22-bfd375c8158e" />
+              <option name="method" value="GET" />
+              <option name="name" value="Draft" />
+              <option name="sortWeight" value="1000000" />
+              <option name="url" value="http://localhost:8080/movingavg/crashes" />
+            </requestState>
+          </option>
+          <option name="response">
+            <responseState>
+              <option name="bodyBytesBase64" value="W3sid2VlayI6MCwidmFsdWUiOjEuMzh9LHsid2VlayI6MSwidmFsdWUiOjEuMTZ9XQo=" />
+              <option name="bodyString" value="[&#10;  {&#10;    &quot;week&quot;: 0,&#10;    &quot;value&quot;: 1.38&#10;  },&#10;  {&#10;    &quot;week&quot;: 1,&#10;    &quot;value&quot;: 1.16&#10;  }&#10;]" />
+              <option name="code" value="200" />
+              <option name="contentType" value="application/json" />
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Date" />
+                    <option name="value" value="Mon, 05 Aug 2024 11:52:17 GMT" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Content-Length" />
+                    <option name="value" value="50" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="5d3b6f7e-7fb3-4874-b1e8-2e11463968f4" />
+              <option name="message" value="OK" />
+              <option name="prettyResponseType" value="JSON" />
+              <option name="rawBodyString" value="[{&quot;week&quot;:0,&quot;value&quot;:1.38},{&quot;week&quot;:1,&quot;value&quot;:1.16}]&#10;" />
+              <option name="size" value="50" />
+              <option name="time" value="3527" />
+            </responseState>
+          </option>
+          <option name="workspaceId" value="drafts" />
+        </requestHistoryState>
+        <requestHistoryState>
+          <option name="dateTime" value="1722859411466" />
+          <option name="id" value="4f739d54-3359-47c4-a12d-1cf904f6eedc" />
+          <option name="request">
+            <requestState>
+              <option name="id" value="51c018df-085b-46f3-aa22-bfd375c8158e" />
+              <option name="method" value="GET" />
+              <option name="name" value="Draft" />
+              <option name="sortWeight" value="1000000" />
+              <option name="url" value="https://2111-103-216-70-144.ngrok-free.app/movingavg/crashes" />
+            </requestState>
+          </option>
+          <option name="response">
+            <responseState>
+              <option name="bodyBytesBase64" value="W3sid2VlayI6MCwidmFsdWUiOjEuMzh9LHsid2VlayI6MSwidmFsdWUiOjEuMTZ9XQo=" />
+              <option name="bodyString" value="[&#10;  {&#10;    &quot;week&quot;: 0,&#10;    &quot;value&quot;: 1.38&#10;  },&#10;  {&#10;    &quot;week&quot;: 1,&#10;    &quot;value&quot;: 1.16&#10;  }&#10;]" />
+              <option name="code" value="200" />
+              <option name="contentType" value="application/json" />
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Length" />
+                    <option name="value" value="50" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Date" />
+                    <option name="value" value="Mon, 05 Aug 2024 12:03:31 GMT" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="4f739d54-3359-47c4-a12d-1cf904f6eedc" />
+              <option name="message" value="OK" />
+              <option name="prettyResponseType" value="JSON" />
+              <option name="rawBodyString" value="[{&quot;week&quot;:0,&quot;value&quot;:1.38},{&quot;week&quot;:1,&quot;value&quot;:1.16}]&#10;" />
+              <option name="size" value="50" />
+              <option name="time" value="3284" />
+            </responseState>
+          </option>
+          <option name="workspaceId" value="drafts" />
+        </requestHistoryState>
+        <requestHistoryState>
+          <option name="dateTime" value="1722859695696" />
+          <option name="id" value="c4b77760-8ce5-4d0e-becb-6cf0683467e2" />
+          <option name="request">
+            <requestState>
+              <option name="id" value="51c018df-085b-46f3-aa22-bfd375c8158e" />
+              <option name="method" value="GET" />
+              <option name="name" value="Draft" />
+              <option name="sortWeight" value="1000000" />
+              <option name="url" value="https://2111-103-216-70-144.ngrok-free.app/movingavg/crashes" />
+            </requestState>
+          </option>
+          <option name="response">
+            <responseState>
+              <option name="bodyBytesBase64" value="W3sid2VlayI6MCwidmFsdWUiOjEuMzh9LHsid2VlayI6MSwidmFsdWUiOjEuMTZ9XQo=" />
+              <option name="bodyString" value="[&#10;  {&#10;    &quot;week&quot;: 0,&#10;    &quot;value&quot;: 1.38&#10;  },&#10;  {&#10;    &quot;week&quot;: 1,&#10;    &quot;value&quot;: 1.16&#10;  }&#10;]" />
+              <option name="code" value="200" />
+              <option name="contentType" value="application/json" />
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Length" />
+                    <option name="value" value="50" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Date" />
+                    <option name="value" value="Mon, 05 Aug 2024 12:08:15 GMT" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="c4b77760-8ce5-4d0e-becb-6cf0683467e2" />
+              <option name="message" value="OK" />
+              <option name="prettyResponseType" value="JSON" />
+              <option name="rawBodyString" value="[{&quot;week&quot;:0,&quot;value&quot;:1.38},{&quot;week&quot;:1,&quot;value&quot;:1.16}]&#10;" />
+              <option name="size" value="50" />
+              <option name="time" value="4068" />
+            </responseState>
+          </option>
+          <option name="workspaceId" value="drafts" />
+        </requestHistoryState>
+        <requestHistoryState>
+          <option name="dateTime" value="1722860268655" />
+          <option name="id" value="1e6f4838-a4b0-498c-8bcc-191aee9c7b9f" />
+          <option name="request">
+            <requestState>
+              <option name="id" value="51c018df-085b-46f3-aa22-bfd375c8158e" />
+              <option name="method" value="GET" />
+              <option name="name" value="Draft" />
+              <option name="sortWeight" value="1000000" />
+              <option name="url" value="https://2111-103-216-70-144.ngrok-free.app/movingavg/crashes" />
+            </requestState>
+          </option>
+          <option name="response">
+            <responseState>
+              <option name="bodyBytesBase64" value="W3sid2VlayI6MCwidmFsdWUiOjEuMzh9LHsid2VlayI6MSwidmFsdWUiOjEuMTZ9XQo=" />
+              <option name="bodyString" value="[&#10;  {&#10;    &quot;week&quot;: 0,&#10;    &quot;value&quot;: 1.38&#10;  },&#10;  {&#10;    &quot;week&quot;: 1,&#10;    &quot;value&quot;: 1.16&#10;  }&#10;]" />
+              <option name="code" value="200" />
+              <option name="contentType" value="application/json" />
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Length" />
+                    <option name="value" value="50" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Date" />
+                    <option name="value" value="Mon, 05 Aug 2024 12:17:48 GMT" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="1e6f4838-a4b0-498c-8bcc-191aee9c7b9f" />
+              <option name="message" value="OK" />
+              <option name="prettyResponseType" value="JSON" />
+              <option name="rawBodyString" value="[{&quot;week&quot;:0,&quot;value&quot;:1.38},{&quot;week&quot;:1,&quot;value&quot;:1.16}]&#10;" />
+              <option name="size" value="50" />
+              <option name="time" value="3316" />
+            </responseState>
+          </option>
+          <option name="workspaceId" value="drafts" />
+        </requestHistoryState>
+        <requestHistoryState>
+          <option name="dateTime" value="1722860699067" />
+          <option name="id" value="c918f087-9089-46e0-9665-79f87590cf59" />
+          <option name="request">
+            <requestState>
+              <option name="id" value="51c018df-085b-46f3-aa22-bfd375c8158e" />
+              <option name="method" value="GET" />
+              <option name="name" value="Draft" />
+              <option name="sortWeight" value="1000000" />
+              <option name="url" value="http://localhost:8080/movingavg/crashes" />
+            </requestState>
+          </option>
+          <option name="response">
+            <responseState>
+              <option name="bodyBytesBase64" value="W3sid2VlayI6MCwidmFsdWUiOjEuMzh9LHsid2VlayI6MSwidmFsdWUiOjEuMTZ9XQo=" />
+              <option name="bodyString" value="[&#10;  {&#10;    &quot;week&quot;: 0,&#10;    &quot;value&quot;: 1.38&#10;  },&#10;  {&#10;    &quot;week&quot;: 1,&#10;    &quot;value&quot;: 1.16&#10;  }&#10;]" />
+              <option name="code" value="200" />
+              <option name="contentType" value="application/json" />
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Date" />
+                    <option name="value" value="Mon, 05 Aug 2024 12:24:59 GMT" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Content-Length" />
+                    <option name="value" value="50" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="c918f087-9089-46e0-9665-79f87590cf59" />
+              <option name="message" value="OK" />
+              <option name="prettyResponseType" value="JSON" />
+              <option name="rawBodyString" value="[{&quot;week&quot;:0,&quot;value&quot;:1.38},{&quot;week&quot;:1,&quot;value&quot;:1.16}]&#10;" />
+              <option name="size" value="50" />
+              <option name="time" value="3195" />
+            </responseState>
+          </option>
+          <option name="workspaceId" value="drafts" />
+        </requestHistoryState>
+        <requestHistoryState>
+          <option name="dateTime" value="1722861594588" />
+          <option name="id" value="d5258e64-f2b4-4275-bb6b-0636ae137984" />
+          <option name="request">
+            <requestState>
+              <option name="id" value="51c018df-085b-46f3-aa22-bfd375c8158e" />
+              <option name="method" value="GET" />
+              <option name="name" value="Draft" />
+              <option name="sortWeight" value="1000000" />
+              <option name="url" value="https://60b850f61a5b4e898aef5ea36f15de52.serveo.net/movingavg/crashes" />
+            </requestState>
+          </option>
+          <option name="response">
+            <responseState>
+              <option name="bodyBytesBase64" value="W3sid2VlayI6MCwidmFsdWUiOjEuMzh9LHsid2VlayI6MSwidmFsdWUiOjEuMTZ9XQo=" />
+              <option name="bodyString" value="[&#10;  {&#10;    &quot;week&quot;: 0,&#10;    &quot;value&quot;: 1.38&#10;  },&#10;  {&#10;    &quot;week&quot;: 1,&#10;    &quot;value&quot;: 1.16&#10;  }&#10;]" />
+              <option name="code" value="200" />
+              <option name="contentType" value="application/json" />
+              <option name="headers">
+                <list>
+                  <headerState>
+                    <option name="key" value="Content-Length" />
+                    <option name="value" value="50" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Content-Type" />
+                    <option name="value" value="application/json" />
+                  </headerState>
+                  <headerState>
+                    <option name="key" value="Date" />
+                    <option name="value" value="Mon, 05 Aug 2024 12:39:54 GMT" />
+                  </headerState>
+                </list>
+              </option>
+              <option name="id" value="d5258e64-f2b4-4275-bb6b-0636ae137984" />
+              <option name="message" value="OK" />
+              <option name="prettyResponseType" value="JSON" />
+              <option name="rawBodyString" value="[{&quot;week&quot;:0,&quot;value&quot;:1.38},{&quot;week&quot;:1,&quot;value&quot;:1.16}]&#10;" />
+              <option name="size" value="50" />
+              <option name="time" value="3766" />
+            </responseState>
+          </option>
+          <option name="workspaceId" value="drafts" />
+        </requestHistoryState>
       </list>
     </option>
   </component>
