@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"encoding/csv"
 	"encoding/json"
 	"fmt"
 	"golang.org/x/oauth2"
@@ -58,10 +59,11 @@ func getWeeklyCrashRate(
 	ctx := context.Background()
 	service, err := playdeveloperreporting.NewService(ctx, option.WithTokenSource(tokenSource))
 	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	startTime := time.Now().AddDate(0, 0, -8)
+	startTime := time.Now().AddDate(0, -3, 0)
 	endTime := time.Now().AddDate(0, 0, -1)
 
 	startDateTime := &playdeveloperreporting.GoogleTypeDateTime{
@@ -91,27 +93,62 @@ func getWeeklyCrashRate(
 
 	result, err := crashes.Do()
 	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
+
 	var crashDataList []CrashData
 
-	// Process each row in the result
-	for _, row := range result.Rows {
-		crashData := formatCrashData(row)
-		crashDataList = append(crashDataList, crashData)
+	// Prepare CSV file
+	csvFile, err := os.Create("crash_rate_data.csv")
+	if err != nil {
+		http.Error(w, "Unable to create CSV file", http.StatusInternalServerError)
+		return
+	}
+	defer csvFile.Close()
+
+	csvWriter := csv.NewWriter(csvFile)
+	defer csvWriter.Flush()
+
+	// Write CSV header
+	err = csvWriter.Write([]string{"Date", "Crash Rate (%)"})
+	if err != nil {
+		http.Error(w, "Unable to write to CSV file", http.StatusInternalServerError)
+		return
 	}
 
-	xys := make(plotter.XYs, len(crashDataList))
+	xys := make(plotter.XYs, len(result.Rows))
 
-	// Print the formatted crash data
-	for i, data := range crashDataList {
-		parsedDate, err := time.Parse("02/01/2006", data.Date)
+	// Process each row in the result
+	for i, row := range result.Rows {
+		str := fmt.Sprintf("%v", row.Metrics)
+		fmt.Println(str)
+
+		// Format the crash data
+		crashData := formatCrashData(row)
+		crashDataList = append(crashDataList, crashData)
+
+		parsedDate, err := time.Parse("02/01/2006", crashData.Date)
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
-		rateWithoutPercent := strings.TrimSuffix(data.CrashRate, "%")
+
+		rateWithoutPercent := strings.TrimSuffix(crashData.CrashRate, "%")
 		crashRate, err := strconv.ParseFloat(rateWithoutPercent, 64)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+
+		// Write crash data to CSV
+		err = csvWriter.Write([]string{parsedDate.Format("02/01/2006"), fmt.Sprintf("%.2f", crashRate)})
+		if err != nil {
+			http.Error(w, "Unable to write to CSV file", http.StatusInternalServerError)
+			return
+		}
+
+		// Plot data
 		xys[i].X = float64(parsedDate.Unix()) // Use Unix timestamp for X-axis
 		xys[i].Y = crashRate
 	}
@@ -134,7 +171,7 @@ func getWeeklyCrashRate(
 	p.X.Label.Text = "Date"
 	p.Y.Label.Text = "Crash Rate (%)"
 
-	// Format X-axis to show dates properly p.X.Tick.Label.
+	// Format X-axis to show dates properly
 	p.X.Tick.Marker = plot.TimeTicks{Format: "02/01/2006"}
 
 	w.Header().Set("Content-Type", "image/png")
@@ -162,6 +199,7 @@ func getWeeklyCrashRate(
 	// Write the image to the response
 	if err := png.Encode(w, img); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
 	}
 
 	return
